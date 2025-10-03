@@ -26,7 +26,7 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setUser(true);
       } else {
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -39,7 +39,7 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setAdmin(true);
       } else {
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -51,7 +51,7 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setCategoriesData(data.categories);
       } else {
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ const AppContextProvider = ({ children }) => {
       if (data.success) {
         setProductsData(data.products);
       } else {
-        console.log(data.message);
+        // console.log(data.message);
       }
     } catch (error) {
       console.log(error.message);

@@ -7,7 +7,12 @@ const AllProducts = () => {
     useContext(AppContext);
   const deleteProduct = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/product/delete/${id}`);
+      const { data } = await axios.delete(`/api/product/delete/${id}`, {
+        withCredentials: true, // only if backend needs cookies/sessions
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
       if (data.success) {
         toast.success(data.message);
         fetchProducts();

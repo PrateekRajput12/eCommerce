@@ -57,13 +57,50 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
+// export const deleteProduct = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+
+//     // Find product first
+//     const product = await Product.findById(id);
+
+//     if (!product) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Product not found",
+//       });
+//     }
+
+//     if (product.images && product.images.length > 0) {
+//       product.images.forEach((image) => {
+//         const imagePath = path.join("uploads", image);
+//         fs.unlink(imagePath, (err) => {
+//           if (err)
+//             console.error(`Failed to delete image ${image}:`, err.message);
+//         });
+//       });
+//     }
+//     await Product.findByIdAndDelete(id);
+//     res.json({
+//       success: true,
+//       message: "Product and its images deleted successfully",
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to delete product",
+//       error: error.message,
+//     });
+//   }
+// };
+
+
+
 export const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find product first
     const product = await Product.findById(id);
-
     if (!product) {
       return res.status(404).json({
         success: false,
@@ -71,16 +108,21 @@ export const deleteProduct = async (req, res) => {
       });
     }
 
+    // Delete images
     if (product.images && product.images.length > 0) {
-      product.images.forEach((image) => {
-        const imagePath = path.join("uploads", image);
-        fs.unlink(imagePath, (err) => {
-          if (err)
-            console.error(`Failed to delete image ${image}:`, err.message);
-        });
-      });
+      for (const image of product.images) {
+        const imagePath = path.resolve(__dirname, "../uploads", image);
+        try {
+          await fs.promises.unlink(imagePath);
+        } catch (err) {
+          console.error(`Failed to delete image ${image}:`, err.message);
+        }
+      }
     }
+
+    // Delete product from DB
     await Product.findByIdAndDelete(id);
+
     res.json({
       success: true,
       message: "Product and its images deleted successfully",

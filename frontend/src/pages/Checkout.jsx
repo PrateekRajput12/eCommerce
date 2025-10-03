@@ -9,7 +9,7 @@ const Checkout = () => {
   const [address, setAddress] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(address[0]);
   const [paymentMethod, setPaymentMethod] = useState("cod");
-  console.log("address", address);
+  // console.log("address", address);
 
   const fetchAddress = async () => {
     try {
@@ -21,7 +21,7 @@ const Checkout = () => {
           setSelectedAddress(data.addresses[0]._id);
         }
       } else {
-        console.log(data.message);
+        // console.log(data.message);
       }
     } catch (error) {
       console.log(error.message);

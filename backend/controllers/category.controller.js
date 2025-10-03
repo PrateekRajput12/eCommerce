@@ -7,7 +7,7 @@ export const createCategory = async (req, res) => {
   try {
     const { name } = req.body;
     const image = req.file.filename;
-    console.log(name, "image", image);
+    // console.log(name, "image", image);
 
     const category = new Category({ name, image });
     await category.save();

@@ -8,6 +8,7 @@ const AllCategories = () => {
   const deleteCategory = async (id) => {
     try {
       const { data } = await axios.delete(`/api/category/delete/${id}`);
+      // console.log(data);
       if (data.success) {
         toast.success(data.message);
         fetchCategories();

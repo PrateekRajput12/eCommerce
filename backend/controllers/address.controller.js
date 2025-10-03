@@ -2,7 +2,7 @@ import Address from "../models/address.model.js";
 import User from "../models/user.model.js";
 export const addAddress = async (req, res) => {
   try {
-    console.log("hy");
+    // console.log("hy");
     const { name, email, city, country, zipCode, state } = req.body;
     const { id } = req.user;
 
