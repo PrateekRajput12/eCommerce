@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const currency = import.meta.env.VITE_CURRENCY;
 
 import axios from "axios";
-axios.defaults.baseURL = import.meta.env.VITE_BASEURL;
+axios.defaults.baseURL = `https://ecommerce-91p6.onrender.com`;
 axios.defaults.withCredentials = true;
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
