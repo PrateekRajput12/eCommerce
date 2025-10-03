@@ -35,7 +35,7 @@ const AllCategories = () => {
               <div className="grid grid-cols-3 items-center mb-4">
                 <div>
                   <img
-                    src={`http://localhost:4000/uploads/${item.image}`}
+                    src={`https://ecommerce-91p6.onrender.com/${item.image}`}
                     alt=""
                     className="w-20 h-20"
                   />
